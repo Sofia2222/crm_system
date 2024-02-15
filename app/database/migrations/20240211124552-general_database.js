@@ -47,6 +47,10 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: true
       },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false
@@ -102,6 +106,9 @@ module.exports = {
   },
 
   async down (queryInterface) {
+    await queryInterface.removeConstraint('users', 'users_companies')
+    await queryInterface.removeConstraint('users_ref_roles', 'users_ref_roles_users')
+    await queryInterface.removeConstraint('users_ref_roles', 'users_ref_roles_roles')
     await queryInterface.dropTable('roles');
     await queryInterface.dropTable('companies');
     await queryInterface.dropTable('users');

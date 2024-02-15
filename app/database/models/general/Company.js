@@ -1,5 +1,6 @@
 const {DataTypes, Model} = require('sequelize');
 const db = require('../../connect');
+
 class Company extends Model{
 
 }
@@ -21,7 +22,10 @@ const model = Company.init({
     },
 },{
     sequelize: db,
-    tableName: 'companies'
+    tableName: 'companies',
+    timestamps: false
 });
+
+
 
 module.exports = model;
