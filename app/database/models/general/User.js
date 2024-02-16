@@ -1,8 +1,8 @@
-const {DataTypes, Model} = require('sequelize');
-const db = require('../../connect');
-const Role = require('./Role')
-const UserRefRole = require('./UserRefRole')
-const Company = require('./Company')
+import {DataTypes, Model} from'sequelize';
+import db from '../../connect.js';
+import Role from './Role.js';
+import UserRefRole from './UserRefRole.js';
+import Company from './Company.js';
 
 class User extends Model{
 
@@ -49,7 +49,9 @@ const model = User.init({
     timestamps: false
 });
 
+
+
 User.belongsTo(Company, {as: 'Companies', foreignKey: 'company_id'})
 model.belongsToMany(Role, {as: 'Role', through: UserRefRole, foreignKey: 'role_id', otherKey: 'user_id'})
 
-module.exports = model;
+export default model;

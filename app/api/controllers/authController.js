@@ -1,18 +1,18 @@
-const { save_user } = require('../function/user_function')
+// import { save_user } from '../function/user_function'
 class authController {
     async postLogin (req, res) {
         try{
             let {email, password} = req.body;
-            console.info(email, password)
-            const result = await User.findAll({
-                where: {},
-                include: [{
-                    where:{},
-                    association: 'Companies',
-                    required: true
-                }]
-            })
-            console.log(result[0]);
+            // console.info(email, password)
+            // const result = await User.findAll({
+            //     where: {},
+            //     include: [{
+            //         where:{},
+            //         association: 'Companies',
+            //         required: true
+            //     }]
+            // })
+            // console.log(result[0]);
             res.status(200).json('login');
         }catch (e) {
             console.log(e.message);
@@ -21,7 +21,7 @@ class authController {
     }
     async postRegister (req, res){
         try{
-            await save_user(req.body);
+            // await save_user(req.body);
             res.status(200).json('register');
         }catch (e) {
             console.log(e.message);
@@ -30,4 +30,4 @@ class authController {
     }
 }
 
-module.exports = new authController();
+export default new authController();

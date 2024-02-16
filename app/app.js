@@ -1,6 +1,8 @@
-require('dotenv').config();
-const {authRouter} = require("./api/routers");
-const express = require('express');
+import 'dotenv/config'
+import {authRouter} from './api/routers/index.js';
+import express from 'express';
+
+
 const app = express();
 const PORT = 3000;
 
