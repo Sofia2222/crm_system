@@ -1,6 +1,8 @@
 const {DataTypes, Model} = require('sequelize');
 const db = require('../../connect');
-const {Company} = require("./Company");
+const Role = require('./Role')
+const UserRefRole = require('./UserRefRole')
+const Company = require('./Company')
 
 class User extends Model{
 
@@ -39,7 +41,7 @@ const model = User.init({
     },
     company_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     }
 },{
     sequelize: db,
@@ -47,7 +49,7 @@ const model = User.init({
     timestamps: false
 });
 
-model.hasOne(Company, {as: 'Companies', foreignKey: 'id'})
-Company.belongsTo(User, {as: 'UserCom', foreignKey: 'company_id'})
+User.belongsTo(Company, {as: 'Companies', foreignKey: 'company_id'})
+model.belongsToMany(Role, {as: 'Role', through: UserRefRole, foreignKey: 'role_id', otherKey: 'user_id'})
 
 module.exports = model;

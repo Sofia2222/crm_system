@@ -68,6 +68,14 @@ module.exports = {
         allowNull: true
       }
     })
+    await queryInterface.addConstraint('users', {
+      fields: ['company_id'],
+      type: 'foreign key',
+      name: 'users_companies',
+      references: {table: 'companies', field: 'id'},
+      onDelete: 'cascade',
+      onUpdate: 'cascade',
+    })
     await queryInterface.createTable('users_ref_roles', {
       user_id: {
         type: DataTypes.INTEGER,
@@ -77,14 +85,6 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: true
       }
-    })
-    await queryInterface.addConstraint('users', {
-      fields: ['company_id'],
-      type: 'foreign key',
-      name: 'users_companies',
-      references: {table: 'companies', field: 'id'},
-      onDelete: 'cascade',
-      onUpdate: 'cascade',
     })
     await queryInterface.addConstraint('users_ref_roles', {
       fields: ['user_id'],
@@ -109,9 +109,10 @@ module.exports = {
     await queryInterface.removeConstraint('users', 'users_companies')
     await queryInterface.removeConstraint('users_ref_roles', 'users_ref_roles_users')
     await queryInterface.removeConstraint('users_ref_roles', 'users_ref_roles_roles')
+    await queryInterface.dropTable('users');
     await queryInterface.dropTable('roles');
     await queryInterface.dropTable('companies');
-    await queryInterface.dropTable('users');
     await queryInterface.dropTable('users_ref_roles');
+
   }
 };

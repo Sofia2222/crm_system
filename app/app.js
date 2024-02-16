@@ -8,6 +8,7 @@ app.use(express.json());
 app.use('/auth', authRouter);
 
 function start() {
+    console.log('ddd')
     app.listen(PORT, () => {console.log(`server start on ${PORT} port`)});
 }
 
