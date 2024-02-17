@@ -1,7 +1,15 @@
 import {DataTypes, Model} from'sequelize';
-import db from '../../connect.js';
-class UserRefRole extends Model{
+import db from '../../connect';
 
+interface UserRefRoleAttribute {
+    user_id: number,
+    role_id: number
+}
+
+class UserRefRole extends Model<UserRefRoleAttribute>
+implements UserRefRoleAttribute{
+    user_id: number;
+    role_id: number;
 }
 
 const model = UserRefRole.init({

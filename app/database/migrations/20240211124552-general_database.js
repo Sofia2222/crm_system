@@ -1,3 +1,4 @@
+import {DataTypes} from 'sequelize'
 export
 async function up (queryInterface) {
   await queryInterface.createTable('roles', {

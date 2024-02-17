@@ -1,8 +1,18 @@
 import {DataTypes, Model} from'sequelize';
-import db from '../../connect.js';
+import db from '../../connect';
 
-class Company extends Model{
+interface CompanyAttribute {
+    id: number,
+    name: string,
+    dbName: string
+}
 
+class Company extends Model<CompanyAttribute>
+implements CompanyAttribute
+{
+    id: number;
+    name: string;
+    dbName: string;
 }
 
 const model = Company.init({
@@ -25,7 +35,5 @@ const model = Company.init({
     tableName: 'companies',
     timestamps: false
 });
-
-
 
 export default model;
