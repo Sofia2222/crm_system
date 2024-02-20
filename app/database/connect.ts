@@ -1,5 +1,9 @@
 import 'dotenv/config';
 import {Sequelize} from 'sequelize';
+import { createNamespace } from 'cls-hooked'
+
+export const namespace = createNamespace('ns');
+Sequelize.useCLS(namespace);
 
 const sequelize = new Sequelize({
     host: process.env.DB_HOST,

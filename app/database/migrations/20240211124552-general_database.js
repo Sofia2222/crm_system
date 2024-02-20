@@ -1,4 +1,5 @@
 import {DataTypes} from 'sequelize'
+
 export
 async function up (queryInterface) {
   await queryInterface.createTable('roles', {
@@ -20,7 +21,7 @@ async function up (queryInterface) {
       autoIncrement: true,
       allowNull: false
     },
-    name: {
+    website: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -55,10 +56,6 @@ async function up (queryInterface) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    website: {
-      type: DataTypes.STRING,
-      allowNull: true
     },
     company_id: {
       type: DataTypes.INTEGER,

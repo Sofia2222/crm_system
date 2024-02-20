@@ -3,7 +3,7 @@ import db from '../../connect';
 
 interface CompanyAttribute {
     id: number,
-    name: string,
+    website: string,
     dbName: string
 }
 
@@ -11,7 +11,7 @@ class Company extends Model<CompanyAttribute>
 implements CompanyAttribute
 {
     id: number;
-    name: string;
+    website: string;
     dbName: string;
 }
 
@@ -22,7 +22,7 @@ const model = Company.init({
         autoIncrement: true,
         allowNull: false
     },
-    name: {
+    website: {
         type: DataTypes.STRING,
         allowNull: false
     },

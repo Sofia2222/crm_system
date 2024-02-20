@@ -11,7 +11,6 @@ interface UserAttribute {
     phone: string,
     email: string,
     password: string,
-    website: string,
     company_id: number
 }
 
@@ -23,7 +22,6 @@ implements UserAttribute{
     phone: string;
     email: string;
     password: string;
-    website: string;
     company_id: number;
 }
 
@@ -53,10 +51,6 @@ const model = User.init({
     password: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    website: {
-        type: DataTypes.STRING,
-        allowNull: true
     },
     company_id: {
         type: DataTypes.INTEGER,
