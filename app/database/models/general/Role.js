@@ -1,5 +1,6 @@
 import {DataTypes, Model} from'sequelize';
-import db from '../../connect';
+import db from '../../connect.js';
+
 class Role extends Model{
 
 }

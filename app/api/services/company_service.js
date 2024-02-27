@@ -1,6 +1,6 @@
-import Company from "../../database/models/general/Company";
+import Company from "../../database/models/general/Company.js";
 
-export class Company_repository {
+export class Company_service {
     static async create(body){
         const dbName = body.company_name;
         console.log(dbName)

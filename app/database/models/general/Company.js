@@ -1,18 +1,10 @@
 import {DataTypes, Model} from'sequelize';
-import db from '../../connect';
+import db from '../../connect.js';
 
-interface CompanyAttribute {
-    id: number,
-    website: string,
-    dbName: string
-}
 
-class Company extends Model<CompanyAttribute>
-implements CompanyAttribute
+class Company extends Model
 {
-    id: number;
-    website: string;
-    dbName: string;
+
 }
 
 const model = Company.init({

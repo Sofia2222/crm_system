@@ -1,7 +1,7 @@
-import User from "../../database/models/general/User";
+import User from "../../database/models/general/User.js";
 import * as bcrypt from 'bcrypt';
 
-export class User_repository {
+export class User_service {
     static async create(body, company_id){
         const tempCompany = await this.findOne(body.email);
         if (tempCompany == null){
@@ -29,7 +29,7 @@ export class User_repository {
             throw new Error(`No user with this email: ${email} was found.`)
         }else{
             const resultCompare = await bcrypt.compare(password, user.password);
-            if (resultCompare == false){
+            if (resultCompare === false){
                 throw new Error('Wrong password!');
             }else{
                 console.log('User authentication successful');

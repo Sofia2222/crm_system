@@ -1,28 +1,11 @@
 import {DataTypes, Model} from'sequelize';
-import db from '../../connect';
-import Role from './Role';
-import UserRefRole from './UserRefRole';
-import Company from './Company';
+import db from '../../connect.js';
+import Role from './Role.js';
+import UserRefRole from './UserRefRole.js';
+import Company from './Company.js';
 
-interface UserAttribute {
-    id: number,
-    name: string,
-    surname: string,
-    phone: string,
-    email: string,
-    password: string,
-    company_id: number
-}
+class User extends Model{
 
-class User extends Model<UserAttribute>
-implements UserAttribute{
-    id: number;
-    name: string;
-    surname: string;
-    phone: string;
-    email: string;
-    password: string;
-    company_id: number;
 }
 
 const model = User.init({
