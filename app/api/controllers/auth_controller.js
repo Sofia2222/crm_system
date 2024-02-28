@@ -5,7 +5,7 @@ class auth_controller {
     async postLogin (req, res) {
         try{
             await db.transaction(async () => {
-                await User_service.authentication(req.body);
+                await User_service.login(req.body);
             })
             res.status(200).json('login');
         }catch (e) {

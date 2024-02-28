@@ -3,8 +3,8 @@ import {authRouter} from './api/routers/index.js';
 import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-// import connect from "./database/connect";
-// import {up, down} from './database/migrations/20240211124552-general_database';
+// import connect from "./database/connect.js";
+// import {up, down} from './database/migrations/20240211124552-general_database.js';
 const app = express();
 const PORT = 3000;
 

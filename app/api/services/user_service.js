@@ -2,7 +2,22 @@ import User from "../../database/models/general/User.js";
 import * as bcrypt from 'bcrypt';
 
 export class User_service {
-    static async create(body, company_id){
+    async login(body){
+        const email = body.email;
+        const password = body.password;
+        const user = await this.findOne(email);
+        if (user == null) {
+            throw new Error(`No user with this email: ${email} was found.`)
+        }else{
+            const resultCompare = await bcrypt.compare(password, user.password);
+            if (resultCompare === false){
+                throw new Error('Wrong password!');
+            }else{
+                console.log('User authentication successful');
+            }
+        }
+    }
+    async create(body, company_id){
         const tempCompany = await this.findOne(body.email);
         if (tempCompany == null){
             const data = {
@@ -21,23 +36,15 @@ export class User_service {
         }
     }
 
-    static async authentication(body){
-        const email = body.email;
-        const password = body.password;
-        const user = await this.findOne(email);
-        if (user == null) {
-            throw new Error(`No user with this email: ${email} was found.`)
-        }else{
-            const resultCompare = await bcrypt.compare(password, user.password);
-            if (resultCompare === false){
-                throw new Error('Wrong password!');
-            }else{
-                console.log('User authentication successful');
-            }
-        }
+    async logout(){
+
     }
 
-    static async findOne(email){
+    async refresh(){
+
+    }
+
+    async findOne(email){
         return await User.findOne({
             where: {
                 'email': email,

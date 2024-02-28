@@ -62,14 +62,24 @@ async function up (queryInterface) {
       allowNull: true
     }
   })
-  await queryInterface.addConstraint('users', {
-    fields: ['company_id'],
-    type: 'foreign key',
-    name: 'users_companies',
-    references: {table: 'companies', field: 'id'},
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
+
+  await queryInterface.createTable('tokens', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    refresh_token: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   })
+
   await queryInterface.createTable('users_ref_roles', {
     user_id: {
       type: DataTypes.INTEGER,
@@ -80,6 +90,23 @@ async function up (queryInterface) {
       allowNull: true
     }
   })
+  await queryInterface.addConstraint('users', {
+    fields: ['company_id'],
+    type: 'foreign key',
+    name: 'users_companies',
+    references: {table: 'companies', field: 'id'},
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+  })
+  await queryInterface.addConstraint('tokens', {
+    fields: ['user_id'],
+    type: 'foreign key',
+    name: 'tokens_users',
+    references: {table: 'users', field: 'id'},
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+  })
+
   await queryInterface.addConstraint('users_ref_roles', {
     fields: ['user_id'],
     type: 'foreign key',
@@ -98,14 +125,17 @@ async function up (queryInterface) {
   })
 }
 
+
 export
 async function down (queryInterface) {
   await queryInterface.removeConstraint('users', 'users_companies')
+  await queryInterface.dropTable('companies');
   await queryInterface.removeConstraint('users_ref_roles', 'users_ref_roles_users')
   await queryInterface.removeConstraint('users_ref_roles', 'users_ref_roles_roles')
-  await queryInterface.dropTable('users');
-  await queryInterface.dropTable('roles');
-  await queryInterface.dropTable('companies');
   await queryInterface.dropTable('users_ref_roles');
+  await queryInterface.removeConstraint('tokens', 'tokens_users')
+  await queryInterface.dropTable('tokens')
+  await queryInterface.dropTable('users');
+  await queryInterface.dropTable('roles')
 
 }
