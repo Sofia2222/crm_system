@@ -1,6 +1,6 @@
-import { validationResult } from 'express-validator';
+const { validationResult } = require('express-validator');
 
-export const error_validation_middleware = (req, res, next) => {
+const error_validation_middleware = (req, res, next) => {
     const result = validationResult(req);
     if (result.isEmpty())
     {
@@ -9,3 +9,6 @@ export const error_validation_middleware = (req, res, next) => {
         res.status(400).json(result);
     }
 }
+module.exports = {
+    error_validation_middleware
+};

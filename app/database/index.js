@@ -1,3 +1,3 @@
-import sequelize from './connect'
+const sequelize = require('./connect');
 
-export default sequelize;
+module.exports = sequelize;

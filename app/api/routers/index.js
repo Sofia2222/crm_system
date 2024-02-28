@@ -1,5 +1,5 @@
-import authRouter from './authRouter.js';
+const authRouter = require('./authRouter');
 
-export {
+module.exports  = {
     authRouter
 }

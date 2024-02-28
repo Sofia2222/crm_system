@@ -1,8 +1,8 @@
-import 'dotenv/config'
-import {authRouter} from './api/routers/index.js';
-import express from 'express';
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
+require('dotenv').config();
+const {authRouter} = require('./api/routers');
+const express = require( 'express');
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 // import connect from "./database/connect.js";
 // import {up, down} from './database/migrations/20240211124552-general_database.js';
 const app = express();

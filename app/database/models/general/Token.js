@@ -1,5 +1,6 @@
-import {DataTypes, Model} from'sequelize';
-import db from '../../connect.js';
+const {DataTypes, Model} = require('sequelize');
+const {sequelize} = require('../../connect');
+
 
 class Token extends Model{
 
@@ -21,8 +22,8 @@ const model = Token.init({
         allowNull: false
     }
 },{
-    sequelize: db,
+    sequelize: sequelize,
     tableName: 'tokens'
 });
 
-export default model;
+module.exports = model;

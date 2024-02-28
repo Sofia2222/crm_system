@@ -1,10 +1,10 @@
-import {User_service, Company_service} from '../services/index.js'
-import db from '../../database/connect.js'
+const {User_service, Company_service} = require('../services')
+const {sequelize} = require('../../database/connect')
 
 class auth_controller {
     async postLogin (req, res) {
         try{
-            await db.transaction(async () => {
+            await sequelize.transaction(async () => {
                 await User_service.login(req.body);
             })
             res.status(200).json('login');
@@ -16,7 +16,7 @@ class auth_controller {
 
     async postRegistration (req, res){
         try{
-            await db.transaction(async () =>{
+            await sequelize.transaction(async () =>{
                 const company  = await Company_service.create(req.body);
                 await User_service.create(req.body, company.id);
             })
@@ -44,10 +44,8 @@ class auth_controller {
             res.status(404).json(e.message);
         }
     }
-
     //TODO: roles to just string?
     //TODO: logout, refreshToken
-
 }
 
-export default new auth_controller();
+module.exports = new auth_controller();

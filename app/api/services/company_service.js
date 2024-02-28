@@ -1,6 +1,6 @@
-import Company from "../../database/models/general/Company.js";
+const Company = require("../../database/models/general/Company");
 
-export class Company_service {
+class Company_service {
     static async create(body){
         const dbName = body.company_name;
         console.log(dbName)
@@ -22,3 +22,5 @@ export class Company_service {
         })
     }
 }
+
+module.exports = new Company_service();

@@ -1,6 +1,5 @@
-import {DataTypes, Model} from'sequelize';
-import db from '../../connect.js';
-
+const {DataTypes, Model} = require('sequelize');
+const {sequelize} = require('../../connect');
 
 class UserRefRole extends Model{
 
@@ -16,8 +15,8 @@ const model = UserRefRole.init({
         allowNull: true
     }
 },{
-    sequelize: db,
+    sequelize: sequelize,
     tableName: 'users_ref_roles'
 });
 
-export default model;
+module.exports = model;

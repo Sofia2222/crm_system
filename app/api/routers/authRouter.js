@@ -1,9 +1,7 @@
-import {authController} from '../controllers/index.js';
-import {Router} from'express';
-import {error_validation_middleware} from "../middlewares/index.js";
-import {body} from "express-validator";
-
-const authRouter = Router();
+const {authController} = require('../controllers');
+const {error_validation_middleware} = require('../middlewares');
+const {body} = require('express-validator');
+const authRouter = require('express').Router();
 
 
 authRouter.post(
@@ -29,4 +27,4 @@ authRouter.post('/logout', authController.logout);
 authRouter.post('/refresh', authController.refresh);
 
 
-export default authRouter;
+module.exports = authRouter;

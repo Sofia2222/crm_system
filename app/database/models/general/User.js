@@ -1,8 +1,8 @@
-import {DataTypes, Model} from'sequelize';
-import db from '../../connect.js';
-import Role from './Role.js';
-import UserRefRole from './UserRefRole.js';
-import Company from './Company.js';
+const {DataTypes, Model} = require('sequelize');
+const {sequelize} = require('../../connect');
+const Role = require( './Role');
+const UserRefRole = require( './UserRefRole');
+const Company = require( './Company');
 
 class User extends Model{
 
@@ -40,7 +40,7 @@ const model = User.init({
         allowNull: false
     }
 },{
-    sequelize: db,
+    sequelize: sequelize,
     tableName: 'users',
     timestamps: false
 });
@@ -50,4 +50,4 @@ const model = User.init({
 User.belongsTo(Company, {as: 'Companies', foreignKey: 'company_id'})
 model.belongsToMany(Role, {as: 'Role', through: UserRefRole, foreignKey: 'role_id', otherKey: 'user_id'})
 
-export default model;
+module.exports = model;

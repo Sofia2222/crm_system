@@ -1,6 +1,6 @@
-import {error_validation_middleware} from "./error_validation_middleware.js";
+const {error_validation_middleware} = require("./error_validation_middleware.js");
 
 
-export {
-    error_validation_middleware,
+module.exports = {
+    error_validation_middleware
 }

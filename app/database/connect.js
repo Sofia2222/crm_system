@@ -1,8 +1,8 @@
-import 'dotenv/config';
-import {Sequelize} from 'sequelize';
-import { createNamespace } from 'cls-hooked'
+require('dotenv');
+const {Sequelize} = require('sequelize');
+const { createNamespace } = require('cls-hooked');
 
-export const namespace = createNamespace('ns');
+const namespace = createNamespace('ns');
 Sequelize.useCLS(namespace);
 
 const sequelize = new Sequelize({
@@ -18,4 +18,4 @@ const sequelize = new Sequelize({
     }
 });
 
-export default sequelize;
+module.exports = {namespace, sequelize};

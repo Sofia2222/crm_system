@@ -1,7 +1,7 @@
-import User from "../../database/models/general/User.js";
-import * as bcrypt from 'bcrypt';
+const User = require("../../database/models/general/User");
+const bcrypt = require('bcrypt');
 
-export class User_service {
+class User_service {
     async login(body){
         const email = body.email;
         const password = body.password;
@@ -52,6 +52,8 @@ export class User_service {
         })
     }
 }
+
+module.exports = new User_service();
 
 // console.info(email, password)
 // const result = await User.findAll({

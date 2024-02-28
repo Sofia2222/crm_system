@@ -1,6 +1,5 @@
-import {DataTypes} from 'sequelize'
+const {DataTypes} = require('sequelize')
 
-export
 async function up (queryInterface) {
   await queryInterface.createTable('roles', {
     id: {
@@ -126,7 +125,6 @@ async function up (queryInterface) {
 }
 
 
-export
 async function down (queryInterface) {
   await queryInterface.removeConstraint('users', 'users_companies')
   await queryInterface.dropTable('companies');
@@ -137,5 +135,9 @@ async function down (queryInterface) {
   await queryInterface.dropTable('tokens')
   await queryInterface.dropTable('users');
   await queryInterface.dropTable('roles')
+}
 
+module.exports = {
+  up,
+  down
 }

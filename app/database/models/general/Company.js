@@ -1,6 +1,5 @@
-import {DataTypes, Model} from'sequelize';
-import db from '../../connect.js';
-
+const {DataTypes, Model} = require('sequelize');
+const {sequelize} = require('../../connect');
 
 class Company extends Model
 {
@@ -23,9 +22,9 @@ const model = Company.init({
         allowNull: false
     },
 },{
-    sequelize: db,
+    sequelize: sequelize,
     tableName: 'companies',
     timestamps: false
 });
 
-export default model;
+module.exports = model;
